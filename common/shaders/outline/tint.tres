@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cus1ql1kkf5d8"]
+
+[ext_resource type="Material" uid="uid://s8gih4ls6u52" path="res://common/shaders/outline/outline_material.tres" id="1_a7spq"]
+
+[resource]
+next_pass = ExtResource("1_a7spq")
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0.6901961, 0.4862745, 0, 0.2509804)
+stencil_flags = 2
