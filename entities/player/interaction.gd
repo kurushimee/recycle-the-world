@@ -16,12 +16,9 @@ func _init() -> void:
 func _physics_process(_delta: float) -> void:
 	if _current_interactions.is_empty(): return
 
-	if _can_interact:
-		_update_interactions()
-		# Continuously checks for interactions to allow holding down the button.
-		_try_interacting()
-	else:
-		_nearest_interaction.set_highlight(false)
+	_update_interactions()
+	# Continuously checks for interactions to allow holding down the button.
+	_try_interacting()
 
 
 func _update_interactions() -> void:

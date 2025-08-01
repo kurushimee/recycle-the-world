@@ -20,4 +20,5 @@ script = ExtResource("2_jg60q")
 metadata/_custom_type_script = "uid://ccy7bkca3n1vl"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+visible = false
 debug_color = Color(0.19031474, 0.51473033, 1, 0.41960785)

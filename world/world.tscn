@@ -30,6 +30,7 @@ adjustment_saturation = 1.25
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xmxd"]
 albedo_texture = ExtResource("1_6xmxd")
 uv1_triplanar = true
+texture_filter = 5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tcf2h"]
 material = SubResource("StandardMaterial3D_6xmxd")
@@ -51,6 +52,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+visible = false
 shape = SubResource("WorldBoundaryShape3D_g312j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]

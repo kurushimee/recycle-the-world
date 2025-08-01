@@ -10,10 +10,10 @@ const ROTATION_FACTOR = 2.0
 @export var _interactable: Interactable:
 	set(value):
 		_interactable = value
-		if _interactable:
-			_interactable.interact = collect
 		if Engine.is_editor_hint():
 			_get_configuration_warnings()
+		elif _interactable:
+			_interactable.interact = collect
 
 
 func _ready() -> void:

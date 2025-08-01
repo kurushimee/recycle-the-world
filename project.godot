@@ -31,6 +31,7 @@ gdscript/warnings/unsafe_call_argument=1
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/vsync/vsync_mode=3
 
 [editor_plugins]
 
@@ -84,6 +85,5 @@ bottom_panel_shortcuts/toggle_bottom_panel=Object(Shortcut,"resource_local_to_sc
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
-anti_aliasing/quality/msaa_3d=1
+textures/default_filters/anisotropic_filtering_level=4
+anti_aliasing/quality/msaa_3d=3
