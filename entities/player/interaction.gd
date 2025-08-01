@@ -17,26 +17,33 @@ func _physics_process(_delta: float) -> void:
 	if _current_interactions.is_empty(): return
 
 	if _can_interact:
-		var last_nearest := _nearest_interaction
-		_current_interactions.sort_custom(_sort_by_nearest)
-		if _nearest_interaction != last_nearest:
-			last_nearest.set_highlight(false)
-
-		if _nearest_interaction.is_interactable:
-			_nearest_interaction.set_highlight(true)
+		_update_interactions()
+		# Continuously checks for interactions to allow holding down the button.
+		_try_interacting()
 	else:
 		_nearest_interaction.set_highlight(false)
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"interact") and _can_interact:
-		if _nearest_interaction:
-			_can_interact = false
-			_nearest_interaction.set_highlight(false)
+func _update_interactions() -> void:
+	var last_nearest := _nearest_interaction
+	_current_interactions.sort_custom(_sort_by_nearest)
+	if _nearest_interaction != last_nearest:
+		last_nearest.set_highlight(false)
 
-			await _nearest_interaction.interact.call(owner)
+	if _nearest_interaction.is_interactable:
+		_nearest_interaction.set_highlight(true)
 
-			_can_interact = true
+
+func _try_interacting() -> void:
+	if not _can_interact: return
+	if not Input.is_action_pressed(&"interact"): return
+	if not _nearest_interaction: return
+
+	_can_interact = false
+	_nearest_interaction.set_highlight(false)
+
+	await _nearest_interaction.interact.call(owner)
+	_can_interact = true
 
 
 func _sort_by_nearest(a: Node3D, b: Node3D) -> bool:

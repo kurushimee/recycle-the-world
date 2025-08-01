@@ -5,6 +5,7 @@ extends StaticBody3D
 
 const COLLECT_DURATION = 0.5
 const ARC_HEIGHT = 1.25
+const ROTATION_FACTOR = 2.0
 
 @export var _interactable: Interactable:
 	set(value):
@@ -28,7 +29,12 @@ func collect(player: Player) -> void:
 	tween.set_parallel(true)
 
 	tween.tween_property(self, "scale", Vector3.ZERO, COLLECT_DURATION).set_ease(Tween.EASE_IN)
-	tween.tween_property(self, "rotation", rotation + Vector3(randf_range(-TAU, TAU), TAU * 2, 0), COLLECT_DURATION)
+	tween.tween_property(
+		self,
+		"rotation",
+		rotation + Vector3(randf_range(-TAU, TAU), TAU * ROTATION_FACTOR, 0.0),
+		COLLECT_DURATION
+	)
 	tween.tween_method(_arc_movement.bind(player, global_position), 0.0, 1.0, COLLECT_DURATION)
 
 	tween.tween_callback(queue_free).set_delay(COLLECT_DURATION)
