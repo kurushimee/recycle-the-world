@@ -24,6 +24,7 @@ func _ready() -> void:
 
 func collect(player: Player) -> void:
 	collision_layer = 0
+	_interactable.collision_layer = 0
 
 	var tween := create_tween()
 	tween.set_parallel(true)
@@ -38,6 +39,9 @@ func collect(player: Player) -> void:
 	tween.tween_method(_arc_movement.bind(player, global_position), 0.0, 1.0, COLLECT_DURATION)
 
 	tween.tween_callback(queue_free).set_delay(COLLECT_DURATION)
+
+	# TODO: replace with hold time to collect
+	await Global.wait_for(COLLECT_DURATION / 2.0)
 
 
 func _arc_movement(progress: float, player: Player, start_pos: Vector3) -> void:

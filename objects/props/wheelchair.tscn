@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://manm0vss0c3x"]
+
+[ext_resource type="PackedScene" uid="uid://bk00ykcj0np3j" path="res://objects/collectable_body/collectable_body.tscn" id="1_sdp6m"]
+[ext_resource type="PackedScene" uid="uid://cu7raalt8jsce" path="res://common/models/wheelchair.glb" id="2_ck6xt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vdg5s"]
+size = Vector3(0.4837036, 0.4942627, 0.45324707)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sdp6m"]
+
+[node name="Wheelchair" instance=ExtResource("1_sdp6m")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0035095215, 0.25286865, -0.0005493164)
+shape = SubResource("BoxShape3D_vdg5s")
+
+[node name="Interactable" parent="." index="1" node_paths=PackedStringArray("_meshes")]
+_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
+
+[node name="CollisionShape3D" parent="Interactable" index="0"]
+shape = SubResource("SphereShape3D_sdp6m")
+
+[node name="wheelchair2" parent="." index="2" instance=ExtResource("2_ck6xt")]
+
+[editable path="wheelchair2"]

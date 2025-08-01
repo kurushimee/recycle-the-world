@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqht2ikomcd1m"]
+[gd_scene load_steps=10 format=3 uid="uid://bqht2ikomcd1m"]
 
 [ext_resource type="Texture2D" uid="uid://bwmuvchc1u1k" path="res://world/textures/texture_05.png" id="1_6xmxd"]
 [ext_resource type="PackedScene" uid="uid://cai32ieuhi3ie" path="res://entities/player/player.tscn" id="2_tcf2h"]
-[ext_resource type="PackedScene" uid="uid://bk00ykcj0np3j" path="res://objects/collectable_body/collectable_body.tscn" id="3_4717r"]
-[ext_resource type="PackedScene" uid="uid://cu7raalt8jsce" path="res://common/models/wheelchair.glb" id="4_h5o24"]
+[ext_resource type="PackedScene" uid="uid://manm0vss0c3x" path="res://objects/props/wheelchair.tscn" id="3_4717r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tcf2h"]
 sky_top_color = Color(0.6206609, 0.5613372, 0.60246336, 1)
@@ -36,11 +35,6 @@ uv1_triplanar = true
 material = SubResource("StandardMaterial3D_6xmxd")
 size = Vector2(100, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mmdvd"]
-size = Vector3(0.49258423, 0.5073242, 0.45581055)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_4717r"]
-
 [node name="World" type="Node"]
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
@@ -65,138 +59,46 @@ mesh = SubResource("PlaneMesh_tcf2h")
 [node name="Objects" type="Node" parent="."]
 
 [node name="Wheelchair" parent="Objects" instance=ExtResource("3_4717r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0193462, 0, -3.5376282)
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
-shape = SubResource("BoxShape3D_mmdvd")
-
-[node name="Interactable" parent="Objects/Wheelchair" index="1" node_paths=PackedStringArray("_meshes")]
-_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair/Interactable" index="0"]
-shape = SubResource("SphereShape3D_4717r")
-
-[node name="wheelchair2" parent="Objects/Wheelchair" instance=ExtResource("4_h5o24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4545989, 0, -1.6458757)
 
 [node name="Wheelchair2" parent="Objects" instance=ExtResource("3_4717r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5489502, -2.3841858e-07, -3.7422655)
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
-shape = SubResource("BoxShape3D_mmdvd")
-
-[node name="Interactable" parent="Objects/Wheelchair2" index="1" node_paths=PackedStringArray("_meshes")]
-_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair2/Interactable" index="0"]
-shape = SubResource("SphereShape3D_4717r")
-
-[node name="wheelchair2" parent="Objects/Wheelchair2" instance=ExtResource("4_h5o24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48401594, 0, -1.6127338)
 
 [node name="Wheelchair3" parent="Objects" instance=ExtResource("3_4717r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7370474, -2.3841858e-07, -3.2494452)
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair3" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
-shape = SubResource("BoxShape3D_mmdvd")
-
-[node name="Interactable" parent="Objects/Wheelchair3" index="1" node_paths=PackedStringArray("_meshes")]
-_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair3/Interactable" index="0"]
-shape = SubResource("SphereShape3D_4717r")
-
-[node name="wheelchair2" parent="Objects/Wheelchair3" instance=ExtResource("4_h5o24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0844393, -2.3841858e-07, -1.4203409)
 
 [node name="Wheelchair4" parent="Objects" instance=ExtResource("3_4717r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14376664, -2.3841858e-07, -2.3426712)
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair4" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
-shape = SubResource("BoxShape3D_mmdvd")
-
-[node name="Interactable" parent="Objects/Wheelchair4" index="1" node_paths=PackedStringArray("_meshes")]
-_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair4/Interactable" index="0"]
-shape = SubResource("SphereShape3D_4717r")
-
-[node name="wheelchair2" parent="Objects/Wheelchair4" instance=ExtResource("4_h5o24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5603487, -2.3841858e-07, 1.3453647)
 
 [node name="Wheelchair5" parent="Objects" instance=ExtResource("3_4717r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4898612, -4.7683716e-07, -1.830417)
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair5" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
-shape = SubResource("BoxShape3D_mmdvd")
-
-[node name="Interactable" parent="Objects/Wheelchair5" index="1" node_paths=PackedStringArray("_meshes")]
-_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair5/Interactable" index="0"]
-shape = SubResource("SphereShape3D_4717r")
-
-[node name="wheelchair2" parent="Objects/Wheelchair5" instance=ExtResource("4_h5o24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43830132, -2.3841858e-07, 2.0120988)
 
 [node name="Wheelchair6" parent="Objects" instance=ExtResource("3_4717r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.180353, -4.7683716e-07, -2.4101634)
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair6" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
-shape = SubResource("BoxShape3D_mmdvd")
-
-[node name="Interactable" parent="Objects/Wheelchair6" index="1" node_paths=PackedStringArray("_meshes")]
-_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair6/Interactable" index="0"]
-shape = SubResource("SphereShape3D_4717r")
-
-[node name="wheelchair2" parent="Objects/Wheelchair6" instance=ExtResource("4_h5o24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3483868, 2.3841858e-07, 0.4305539)
 
 [node name="Wheelchair7" parent="Objects" instance=ExtResource("3_4717r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7191594, -4.7683716e-07, -1.2049916)
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair7" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
-shape = SubResource("BoxShape3D_mmdvd")
-
-[node name="Interactable" parent="Objects/Wheelchair7" index="1" node_paths=PackedStringArray("_meshes")]
-_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
-
-[node name="CollisionShape3D" parent="Objects/Wheelchair7/Interactable" index="0"]
-shape = SubResource("SphereShape3D_4717r")
-
-[node name="wheelchair2" parent="Objects/Wheelchair7" instance=ExtResource("4_h5o24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7105994, 2.3841858e-07, 2.6444116)
 
 [node name="Wheelchair8" parent="Objects" instance=ExtResource("3_4717r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9267864, -4.7683716e-07, -0.465598)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72470737, 2.3841858e-07, 3.7463727)
 
-[node name="CollisionShape3D" parent="Objects/Wheelchair8" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
-shape = SubResource("BoxShape3D_mmdvd")
+[node name="Wheelchair9" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6753802, 2.3841858e-07, 3.0922518)
 
-[node name="Interactable" parent="Objects/Wheelchair8" index="1" node_paths=PackedStringArray("_meshes")]
-_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
+[node name="Wheelchair10" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3215036, 2.3841858e-07, 0.32359838)
 
-[node name="CollisionShape3D" parent="Objects/Wheelchair8/Interactable" index="0"]
-shape = SubResource("SphereShape3D_4717r")
+[node name="Wheelchair11" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3215036, 2.3841858e-07, -3.6764016)
 
-[node name="wheelchair2" parent="Objects/Wheelchair8" instance=ExtResource("4_h5o24")]
+[node name="Wheelchair12" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0739768, 2.3841858e-07, -3.109733)
 
-[editable path="Objects/Wheelchair"]
-[editable path="Objects/Wheelchair/wheelchair2"]
-[editable path="Objects/Wheelchair2"]
-[editable path="Objects/Wheelchair2/wheelchair2"]
-[editable path="Objects/Wheelchair3"]
-[editable path="Objects/Wheelchair3/wheelchair2"]
-[editable path="Objects/Wheelchair4"]
-[editable path="Objects/Wheelchair4/wheelchair2"]
-[editable path="Objects/Wheelchair5"]
-[editable path="Objects/Wheelchair5/wheelchair2"]
-[editable path="Objects/Wheelchair6"]
-[editable path="Objects/Wheelchair6/wheelchair2"]
-[editable path="Objects/Wheelchair7"]
-[editable path="Objects/Wheelchair7/wheelchair2"]
-[editable path="Objects/Wheelchair8"]
-[editable path="Objects/Wheelchair8/wheelchair2"]
+[node name="Wheelchair13" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0249851, 2.3841858e-07, -3.8511643)
+
+[node name="Wheelchair14" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4012551, 2.3841858e-07, -2.2463126)
+
+[node name="Wheelchair15" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2073472, 2.3841858e-07, -0.7369642)

@@ -40,8 +40,6 @@ func _try_interacting() -> void:
 	if not _nearest_interaction: return
 
 	_can_interact = false
-	_nearest_interaction.set_highlight(false)
-
 	await _nearest_interaction.interact.call(owner)
 	_can_interact = true
 
