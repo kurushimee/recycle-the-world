@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody3D
 
-const WALK_SPEED = 6.9
+const WALK_SPEED = 5.0
 const ROTATION_SPEED = 12.5
 
 @export_group("Nodes")

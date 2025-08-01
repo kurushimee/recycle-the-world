@@ -3,6 +3,8 @@ class_name Interactable
 extends Area3D
 
 @export var is_interactable := true
+## Time for holding the interaction. If zero, the interaction will be instant.
+@export var hold_time := 0.0
 
 @export_group("Nodes")
 ## The meshes to which the highlight outline will apply.
