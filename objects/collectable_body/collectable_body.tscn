@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk00ykcj0np3j"]
+
+[ext_resource type="Script" uid="uid://5nd5wdebfmnu" path="res://objects/collectable_body/collectable_body.gd" id="1_hvbxs"]
+[ext_resource type="Script" uid="uid://ccy7bkca3n1vl" path="res://objects/interactable/interactable.gd" id="2_jg60q"]
+
+[node name="CollectableBody" type="StaticBody3D" node_paths=PackedStringArray("_interactable")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_hvbxs")
+_interactable = NodePath("Interactable")
+metadata/_custom_type_script = "uid://5nd5wdebfmnu"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="Interactable" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_jg60q")
+metadata/_custom_type_script = "uid://ccy7bkca3n1vl"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+debug_color = Color(0.19031474, 0.51473033, 1, 0.41960785)

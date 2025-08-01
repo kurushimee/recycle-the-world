@@ -1,0 +1,202 @@
+[gd_scene load_steps=13 format=3 uid="uid://bqht2ikomcd1m"]
+
+[ext_resource type="Texture2D" uid="uid://bwmuvchc1u1k" path="res://world/textures/texture_05.png" id="1_6xmxd"]
+[ext_resource type="PackedScene" uid="uid://cai32ieuhi3ie" path="res://entities/player/player.tscn" id="2_tcf2h"]
+[ext_resource type="PackedScene" uid="uid://bk00ykcj0np3j" path="res://objects/collectable_body/collectable_body.tscn" id="3_4717r"]
+[ext_resource type="PackedScene" uid="uid://cu7raalt8jsce" path="res://common/models/wheelchair.glb" id="4_h5o24"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tcf2h"]
+sky_top_color = Color(0.6206609, 0.5613372, 0.60246336, 1)
+sky_horizon_color = Color(0.7257936, 0.6590446, 0.5790594, 1)
+ground_horizon_color = Color(0.7257936, 0.6590446, 0.5790594, 1)
+
+[sub_resource type="Sky" id="Sky_4717r"]
+sky_material = SubResource("ProceduralSkyMaterial_tcf2h")
+
+[sub_resource type="Environment" id="Environment_h5o24"]
+background_mode = 2
+sky = SubResource("Sky_4717r")
+tonemap_mode = 2
+tonemap_exposure = 1.15
+tonemap_white = 8.0
+glow_enabled = true
+fog_light_color = Color(0.72357446, 0.48635563, 0.3514332, 1)
+adjustment_enabled = true
+adjustment_brightness = 1.05
+adjustment_contrast = 1.1
+adjustment_saturation = 1.25
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g312j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xmxd"]
+albedo_texture = ExtResource("1_6xmxd")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tcf2h"]
+material = SubResource("StandardMaterial3D_6xmxd")
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mmdvd"]
+size = Vector3(0.49258423, 0.5073242, 0.45581055)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4717r"]
+
+[node name="World" type="Node"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h5o24")
+
+[node name="Player" parent="." instance=ExtResource("2_tcf2h")]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_g312j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_tcf2h")
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="Wheelchair" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0193462, 0, -3.5376282)
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
+shape = SubResource("BoxShape3D_mmdvd")
+
+[node name="Interactable" parent="Objects/Wheelchair" index="1" node_paths=PackedStringArray("_meshes")]
+_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair/Interactable" index="0"]
+shape = SubResource("SphereShape3D_4717r")
+
+[node name="wheelchair2" parent="Objects/Wheelchair" instance=ExtResource("4_h5o24")]
+
+[node name="Wheelchair2" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5489502, -2.3841858e-07, -3.7422655)
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
+shape = SubResource("BoxShape3D_mmdvd")
+
+[node name="Interactable" parent="Objects/Wheelchair2" index="1" node_paths=PackedStringArray("_meshes")]
+_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair2/Interactable" index="0"]
+shape = SubResource("SphereShape3D_4717r")
+
+[node name="wheelchair2" parent="Objects/Wheelchair2" instance=ExtResource("4_h5o24")]
+
+[node name="Wheelchair3" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7370474, -2.3841858e-07, -3.2494452)
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
+shape = SubResource("BoxShape3D_mmdvd")
+
+[node name="Interactable" parent="Objects/Wheelchair3" index="1" node_paths=PackedStringArray("_meshes")]
+_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair3/Interactable" index="0"]
+shape = SubResource("SphereShape3D_4717r")
+
+[node name="wheelchair2" parent="Objects/Wheelchair3" instance=ExtResource("4_h5o24")]
+
+[node name="Wheelchair4" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14376664, -2.3841858e-07, -2.3426712)
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
+shape = SubResource("BoxShape3D_mmdvd")
+
+[node name="Interactable" parent="Objects/Wheelchair4" index="1" node_paths=PackedStringArray("_meshes")]
+_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair4/Interactable" index="0"]
+shape = SubResource("SphereShape3D_4717r")
+
+[node name="wheelchair2" parent="Objects/Wheelchair4" instance=ExtResource("4_h5o24")]
+
+[node name="Wheelchair5" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4898612, -4.7683716e-07, -1.830417)
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair5" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
+shape = SubResource("BoxShape3D_mmdvd")
+
+[node name="Interactable" parent="Objects/Wheelchair5" index="1" node_paths=PackedStringArray("_meshes")]
+_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair5/Interactable" index="0"]
+shape = SubResource("SphereShape3D_4717r")
+
+[node name="wheelchair2" parent="Objects/Wheelchair5" instance=ExtResource("4_h5o24")]
+
+[node name="Wheelchair6" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.180353, -4.7683716e-07, -2.4101634)
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair6" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
+shape = SubResource("BoxShape3D_mmdvd")
+
+[node name="Interactable" parent="Objects/Wheelchair6" index="1" node_paths=PackedStringArray("_meshes")]
+_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair6/Interactable" index="0"]
+shape = SubResource("SphereShape3D_4717r")
+
+[node name="wheelchair2" parent="Objects/Wheelchair6" instance=ExtResource("4_h5o24")]
+
+[node name="Wheelchair7" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7191594, -4.7683716e-07, -1.2049916)
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair7" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
+shape = SubResource("BoxShape3D_mmdvd")
+
+[node name="Interactable" parent="Objects/Wheelchair7" index="1" node_paths=PackedStringArray("_meshes")]
+_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair7/Interactable" index="0"]
+shape = SubResource("SphereShape3D_4717r")
+
+[node name="wheelchair2" parent="Objects/Wheelchair7" instance=ExtResource("4_h5o24")]
+
+[node name="Wheelchair8" parent="Objects" instance=ExtResource("3_4717r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9267864, -4.7683716e-07, -0.465598)
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair8" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004501343, 0.24633789, -0.0018310547)
+shape = SubResource("BoxShape3D_mmdvd")
+
+[node name="Interactable" parent="Objects/Wheelchair8" index="1" node_paths=PackedStringArray("_meshes")]
+_meshes = [NodePath("../wheelchair2/wheelchair"), NodePath("../wheelchair2/wheelchair/wheel-left"), NodePath("../wheelchair2/wheelchair/wheel-right")]
+
+[node name="CollisionShape3D" parent="Objects/Wheelchair8/Interactable" index="0"]
+shape = SubResource("SphereShape3D_4717r")
+
+[node name="wheelchair2" parent="Objects/Wheelchair8" instance=ExtResource("4_h5o24")]
+
+[editable path="Objects/Wheelchair"]
+[editable path="Objects/Wheelchair/wheelchair2"]
+[editable path="Objects/Wheelchair2"]
+[editable path="Objects/Wheelchair2/wheelchair2"]
+[editable path="Objects/Wheelchair3"]
+[editable path="Objects/Wheelchair3/wheelchair2"]
+[editable path="Objects/Wheelchair4"]
+[editable path="Objects/Wheelchair4/wheelchair2"]
+[editable path="Objects/Wheelchair5"]
+[editable path="Objects/Wheelchair5/wheelchair2"]
+[editable path="Objects/Wheelchair6"]
+[editable path="Objects/Wheelchair6/wheelchair2"]
+[editable path="Objects/Wheelchair7"]
+[editable path="Objects/Wheelchair7/wheelchair2"]
+[editable path="Objects/Wheelchair8"]
+[editable path="Objects/Wheelchair8/wheelchair2"]
